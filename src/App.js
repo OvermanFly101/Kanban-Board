@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import TaskBoard from './components/mainTask';
+import TaskItems from './components/taskItems';
 
 function App() {
+  const [itemsList, setItemsList] = useState([]);
+  const bridgeItems = (items) => {
+    console.log('bridgeItems: ' + items);
+    setItemsList(items);
+  }
+  console.log(itemsList);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div style={{display: 'flex', alignItems: 'center'}}>
+        <h1 style={{padding: '15px'}}>KanBan Flow</h1>
+        <TaskItems bridgeItems={bridgeItems}/>
+      </div>
+      <div>
+        <TaskBoard itemsList={itemsList}/>
+      </div>
     </div>
-  );
+  )
 }
 
 export default App;
